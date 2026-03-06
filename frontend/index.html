@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Structural Code Plagiarism Checker — Compiler Design based analysis using AST, Winnowing, and Jaccard Similarity.">
+    <title>Structural Plagiarism Checker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+    <!-- ─── Navbar ─── -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <span class="nav-icon">⬡</span>
+            <span class="nav-title">StructCheck</span>
+        </div>
+        <div class="nav-subtitle">Compiler-Driven Plagiarism Detector</div>
+    </nav>
+
+    <!-- ─── Hero / Upload Section ─── -->
+    <main class="container">
+        <section id="upload-section" class="card glass-card upload-card">
+            <h1>Upload Student Files</h1>
+            <p class="muted">Drag &amp; drop a <strong>.zip</strong> archive or select multiple <strong>.py</strong> files to begin analysis.</p>
+
+            <div id="drop-zone" class="drop-zone">
+                <div class="drop-zone-inner">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                    </div>
+                    <p>Drop files here or <label for="file-input" class="link-btn">browse</label></p>
+                    <input type="file" id="file-input" multiple accept=".py,.zip" hidden>
+                    <div id="file-list" class="file-list"></div>
+                </div>
+            </div>
+
+            <button id="analyze-btn" class="btn btn-primary" disabled>
+                <span class="btn-text">Analyze Files</span>
+                <span class="btn-loader hidden">
+                    <span class="spinner"></span> Processing…
+                </span>
+            </button>
+        </section>
+
+        <!-- ─── Progress Indicator ─── -->
+        <section id="progress-section" class="hidden">
+            <div class="progress-bar-container">
+                <div id="progress-bar" class="progress-bar"></div>
+            </div>
+            <p id="progress-text" class="muted center">Analyzing structural patterns…</p>
+        </section>
+
+        <!-- ─── Results Dashboard ─── -->
+        <section id="results-section" class="hidden">
+            <div class="section-header">
+                <h2>Similarity Results</h2>
+                <div class="badge" id="files-badge"></div>
+            </div>
+
+            <!-- Results Table -->
+            <div class="card glass-card">
+                <div class="table-wrapper">
+                    <table id="results-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>File A</th>
+                                <th>File B</th>
+                                <th>Similarity</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="results-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Network Graph -->
+            <div class="card glass-card" id="graph-card">
+                <h3>Similarity Network</h3>
+                <p class="muted">Nodes = files, edges = similarity. Thicker/redder edges indicate higher similarity.</p>
+                <canvas id="network-canvas" width="800" height="450"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <!-- ─── Footer ─── -->
+    <footer class="footer">
+        <p>Built with Compiler Design Principles — AST Parsing • Winnowing Algorithm • Jaccard Similarity</p>
+    </footer>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>

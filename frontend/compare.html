@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Side-by-Side Comparison — StructCheck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+
+    <!-- ─── Navbar ─── -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="/" class="nav-link-home">
+                <span class="nav-icon">⬡</span>
+                <span class="nav-title">StructCheck</span>
+            </a>
+        </div>
+        <div class="nav-subtitle" id="compare-subtitle">Loading…</div>
+    </nav>
+
+    <!-- ─── Comparison Header ─── -->
+    <div class="compare-header">
+        <div class="compare-meta">
+            <div class="sim-badge" id="sim-badge">—</div>
+            <div class="compare-files">
+                <span id="label-a" class="file-label file-label-a">File A</span>
+                <span class="vs">vs</span>
+                <span id="label-b" class="file-label file-label-b">File B</span>
+            </div>
+        </div>
+        <div class="compare-actions">
+            <button id="download-pdf-btn" class="btn btn-outline btn-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="7 10 12 15 17 10" />
+                    <line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Download PDF
+            </button>
+            <a href="/" class="btn btn-outline btn-sm">← Back to Dashboard</a>
+        </div>
+    </div>
+
+    <!-- ─── Side-by-Side Code Panels ─── -->
+    <div class="compare-container">
+        <div class="code-panel" id="panel-a">
+            <div class="panel-header">
+                <span class="panel-title" id="panel-title-a">File A</span>
+                <span class="panel-tag tag-a">Source A</span>
+            </div>
+            <div class="code-scroll" id="code-scroll-a">
+                <pre><code id="code-a"></code></pre>
+            </div>
+        </div>
+
+        <div class="panel-divider"></div>
+
+        <div class="code-panel" id="panel-b">
+            <div class="panel-header">
+                <span class="panel-title" id="panel-title-b">File B</span>
+                <span class="panel-tag tag-b">Source B</span>
+            </div>
+            <div class="code-scroll" id="code-scroll-b">
+                <pre><code id="code-b"></code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ─── Legend ─── -->
+    <div class="compare-legend">
+        <span class="legend-item"><span class="legend-swatch matched"></span> Matched structural block</span>
+        <span class="legend-item"><span class="legend-swatch normal"></span> Original / non-matched</span>
+    </div>
+
+    <script src="/static/js/compare.js"></script>
+</body>
+
+</html>
