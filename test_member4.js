@@ -2,7 +2,7 @@ const SymbolTable = require('./backend/compiler/symboltable/symbolTable');
 const CFGGenerator = require('./backend/compiler/cfg/cfgGenerator'); 
 const IRGenerator = require('./backend/compiler/ir/irGenerator');
 
-console.log('\n=== KOMAL (MEMBER 4) LOGIC TEST ===');
+console.log('\n=== LOGIC TEST ===');
 
 try {
     const st = new SymbolTable();
