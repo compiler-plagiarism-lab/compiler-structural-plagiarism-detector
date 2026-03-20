@@ -1,13 +1,17 @@
 //  Control Flow Graph Generator
 // Control Flow Graph (CFG) Generator
 
+// Control Flow Graph Generator
+
+// Control Flow Graph Generator
+
 class CFGGenerator {
 
     constructor() {
-        // stores program blocks
+        // stores program blocks (nodes)
         this.nodes = [];
 
-        // stores flow connections
+        // stores execution flow connections (edges)
         this.edges = [];
     }
 
@@ -28,26 +32,44 @@ class CFGGenerator {
         });
     }
 
-    // find unreachable nodes (dead code detection)
-    findUnreachableNodes() {
+    // find unreachable nodes using DFS traversal
+    // entryId = starting node of program (default = 1)
+    findUnreachableNodes(entryId = 1) {
 
-        const reachable = new Set();
+        const visited = new Set();
 
-        // mark all connected nodes
+        // build adjacency list
+        const graph = {};
+
         this.edges.forEach(edge => {
-            reachable.add(edge.from);
-            reachable.add(edge.to);
+            if (!graph[edge.from]) {
+                graph[edge.from] = [];
+            }
+            graph[edge.from].push(edge.to);
         });
 
-        // nodes not connected anywhere = unreachable
+        // DFS traversal
+        const dfs = (node) => {
+            if (visited.has(node)) return;
+
+            visited.add(node);
+
+            const neighbors = graph[node] || [];
+            neighbors.forEach(next => dfs(next));
+        };
+
+        // start traversal from entry node
+        dfs(entryId);
+
+        // nodes not visited = unreachable (dead code)
         const unreachable = this.nodes.filter(node =>
-            !reachable.has(node.id)
+            !visited.has(node.id)
         );
 
         return unreachable;
     }
 
-    // return full CFG structure
+    // return complete CFG structure
     getCFG() {
         return {
             nodes: this.nodes,
