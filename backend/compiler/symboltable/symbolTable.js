@@ -18,7 +18,7 @@ class SymbolTable {
      // when variable is in code then increase count
     updateUsage(name) {
         if (this.table[name]) {
-            this.table[name].usedCount++;
+            this.table[name].usedCount++; n
         }
     }
 }
